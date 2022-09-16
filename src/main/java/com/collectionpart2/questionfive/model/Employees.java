@@ -1,19 +1,19 @@
 package com.collectionpart2.questionfive.model;
 
 public class Employees {
-    private int id;
+    private Integer id;
     private String name;
     private String department;
-    private int salary;
+    private Integer salary;
 
-    public Employees(int id, String name, String department, int salary) {
+    public Employees(Integer id, String name, String department, Integer salary) {
         this.id = id;
         this.name = name;
         this.department = department;
         this.salary = salary;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -25,17 +25,13 @@ public class Employees {
         return department;
     }
 
-    public int getSalary() {
+    public Integer getSalary() {
         return salary;
     }
 
     @Override
     public String toString() {
-        return "Employees{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", department='" + department + '\'' +
-                ", salary=" + salary +
-                '}';
+        return java.text.MessageFormat.format("id :{0}, name :{1}, department :{2}, salary :{3}",
+                                                id,name,department,salary);
     }
 }

@@ -19,7 +19,6 @@ public class HighestSalary {
                 result.put(employee.getDepartment(), employee);
             }
         }
-        //System.out.println("Map is ==== "+result);
         return result;
     }
     public Map<String, Integer> finalResult(Map<String, Employees> resultMap){

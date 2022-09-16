@@ -3,13 +3,13 @@ package com.collectionpart2.questionsix.model;
 public class Candidates {
     private Integer candidateId;
     private String name;
-    private String Constituency;
+    private String constituency;
     private Integer votes;
 
     public Candidates(Integer candidateId, String name, String constituency, Integer votes) {
         this.candidateId = candidateId;
         this.name = name;
-        Constituency = constituency;
+        this.constituency = constituency;
         this.votes = votes;
     }
 
@@ -30,11 +30,11 @@ public class Candidates {
     }
 
     public String getConstituency() {
-        return Constituency;
+        return constituency;
     }
 
     public void setConstituency(String constituency) {
-        Constituency = constituency;
+        this.constituency = constituency;
     }
 
     public Integer getVotes() {
@@ -47,9 +47,7 @@ public class Candidates {
 
     @Override
     public String toString() {
-        return String.format(
-                "candidateId = %3d" + candidateId + ", name= %s" + name +
-                ", Constituency = %s" + Constituency +
-                ", votes = %4d" + votes);
+        return java.text.MessageFormat.format("candidateId :{0}, name :{1}, constituency :{2},"+
+                                                " votes :{3}", candidateId, name, constituency, votes);
     }
 }

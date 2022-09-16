@@ -19,7 +19,6 @@ public class EmployeeHighestSalary {
         List<Employees> employee = highestSalary.getEmployees(input);
 
         Map<String, Employees> resultMap = highestSalary.processData(employee);
-        System.out.println("Result map is "+resultMap);
 
         Map<String, Integer> finalResult = highestSalary.finalResult(resultMap);
         System.out.println("Employee IDs of the highest paid employee in each department are : "+ finalResult);

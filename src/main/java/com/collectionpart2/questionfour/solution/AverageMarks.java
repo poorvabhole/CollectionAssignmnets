@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AverageMarks {
-    public int getAverageMarks(List<Student> students, int lowestId) {
+    public Integer getAverageMarks(List<Student> students, Integer lowestId) {
         int sum = 0;
         int average;
         for (Student student: students) {
@@ -17,7 +17,7 @@ public class AverageMarks {
         average = sum / students.size();
         return average;
     }
-    public int getLowestStudentId(List<Student> students) {
+    public Integer getLowestStudentId(List<Student> students) {
         int lowestId = students.get(0).getId();
         for (Student student: students) {
             if (lowestId > student.getId()) {

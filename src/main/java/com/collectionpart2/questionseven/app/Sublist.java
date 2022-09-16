@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Sublist {
-    public static void userInput(){
+    public void userInput(){
         Scanner scanner = new Scanner(System.in);
         List<Integer> list1 = new ArrayList<Integer>();
         List<Integer> list2 = new ArrayList<Integer>();
@@ -31,7 +31,7 @@ public class Sublist {
         while (nextElement.equalsIgnoreCase("y"));
         sublistOrNot(list1, list2);
     }
-    private static void sublistOrNot(List<Integer> list1, List<Integer> list2){
+    private void sublistOrNot(List<Integer> list1, List<Integer> list2){
 //        System.out.println(list2.retainAll(list1));
         if ( list1.containsAll(list2) && (list1.size() > list2.size()) )
         {

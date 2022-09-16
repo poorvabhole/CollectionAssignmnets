@@ -25,6 +25,12 @@ public class CandidateWithMaxVotes {
     public Map<String, Integer> finalResult(Map<String, Candidates> resultMap){
         Map<String, Integer> finalResult = new HashMap<>();
 
+        for (String constituency : resultMap.keySet()) {
+            Candidates candidates = resultMap.get(constituency);
+            Integer candidateId = candidates.getCandidateId();
+            finalResult.put(constituency,candidateId);
+        }
+
         return finalResult;
     }
     public List<Candidates> getEmployees(String[] input){

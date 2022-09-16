@@ -7,12 +7,12 @@ import java.util.Set;
 public class CheckIfIsogramOrNot {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-
+        CheckIfIsogramOrNot checkIfIsogramOrNot = new CheckIfIsogramOrNot();
         System.out.println("Enter the phrase or word to check isogram or not..");
         String word = scanner.next();
-        isIsogram(word);
+        checkIfIsogramOrNot.isogramOrNot(word);
     }
-    private static void isIsogram(String word){
+    private void isogramOrNot(String word){
         Set<Character> wordSet = new HashSet<Character>();
         String input = word.toLowerCase();
         char[] characters = input.toCharArray();

@@ -20,15 +20,18 @@ public class StudentAverageMarks {
 
         while ((inputLine = bufferedReader.readLine()) != null){
 //            System.out.println(inputLine);
+            //remove non printable character from input line
+
             inputList.add(inputLine);
+
         }
 
         List<Student> students = averageMarks.getStudents(inputList);
 
-        int lowestId = averageMarks.getLowestStudentId(students);
+        Integer lowestId = averageMarks.getLowestStudentId(students);
         System.out.println(String.format("lowest id: %d", lowestId));
 
-        int average = averageMarks.getAverageMarks(students, lowestId);
+        Integer average = averageMarks.getAverageMarks(students, lowestId);
         System.out.println(String.format("Average marks scored across all subjects by the student with the lowest ID  ( %d ) is %d", lowestId, average));
     }
 }
