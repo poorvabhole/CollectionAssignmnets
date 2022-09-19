@@ -2,9 +2,9 @@ package com.collectionpart2.questionnine;
 
 import java.util.*;
 
-public class checkIfAnagramOrNot {
+public class CheckIfAnagramOrNot {
     public static void main(String[] args) {
-        checkIfAnagramOrNot anagramOrNot = new checkIfAnagramOrNot();
+        CheckIfAnagramOrNot anagramOrNot = new CheckIfAnagramOrNot();
         String input = "dormitory";
 //        String input = "listen";
         String[] candidates = {"enlists", "google", "inlets", "dirty room"};
