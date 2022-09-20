@@ -1,6 +1,6 @@
-package com.collectionpart2.questionseven.solution;
+package com.collectionpart2.questionseven.app;
 
-import com.collectionpart2.questionseven.app.CheckSublist;
+import com.collectionpart2.questionseven.solution.CheckSublist;
 
 public class Sublist {
     public static void main(String[] args) {

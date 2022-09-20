@@ -1,4 +1,4 @@
-package com.collectionpart2.questionseven.app;
+package com.collectionpart2.questionseven.solution;
 
 import java.util.ArrayList;
 import java.util.List;
