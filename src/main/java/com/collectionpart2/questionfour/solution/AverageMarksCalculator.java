@@ -5,20 +5,22 @@ import com.collectionpart2.questionfour.model.Student;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AverageMarks {
-    public Integer getAverageMarks(List<Student> students, Integer lowestId) {
-        int sum = 0;
-        int average;
+public class AverageMarksCalculator {
+    public Double getAverageMarks(List<Student> students, Integer lowestId) {
+        Double sum = 0.0;
+        Integer count =0;
+        Double average;
         for (Student student: students) {
             if (lowestId == student.getId()) {
                 sum += student.getMarks();
+                count++;
             }
         }
-        average = sum / students.size();
+        average =  sum / count;
         return average;
     }
     public Integer getLowestStudentId(List<Student> students) {
-        int lowestId = students.get(0).getId();
+        Integer lowestId = students.get(0).getId();
         for (Student student: students) {
             if (lowestId > student.getId()) {
                 lowestId = student.getId();
@@ -26,17 +28,12 @@ public class AverageMarks {
         }
         return lowestId;
     }
-
-    public List<Student> getStudents(List<String> inputList) {
+    public List<Student> mapArrayToListOfStudent(List<String> inputList) {
         List<Student> students = new ArrayList<Student>();
 
         for (String line: inputList) {
             String[] values = line.split(",");
 
-            for (String value : values) {
-                System.out.println(value);
-                System.out.println(value.length());
-            }
             Integer id = Integer.parseInt(values[0].trim());
             String subject = (values[1].trim()) ;
             Integer marks = Integer.parseInt(values[2].trim());

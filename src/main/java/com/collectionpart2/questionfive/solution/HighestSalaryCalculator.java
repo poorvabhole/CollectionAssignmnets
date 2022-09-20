@@ -7,8 +7,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class HighestSalary {
-    public Map<String, Employees> processData(List<Employees> employees) {
+public class HighestSalaryCalculator {
+    public Map<String, Employees> mapDepartmentwiseEmployee(List<Employees> employees) {
         // Need to store the ENTIRE Employee as the value to compare salary and
         // later retrieve the ID
         Map<String, Employees> result = new HashMap<String, Employees>();
@@ -21,7 +21,7 @@ public class HighestSalary {
         }
         return result;
     }
-    public Map<String, Integer> finalResult(Map<String, Employees> resultMap){
+    public Map<String, Integer> getEmployeeHighestSalary(Map<String, Employees> resultMap){
         Map<String, Integer> finalResult = new HashMap<>();
         for (String department : resultMap.keySet()){
             Employees e = resultMap.get(department);
@@ -30,7 +30,7 @@ public class HighestSalary {
         }
         return finalResult;
     }
-    public List<Employees> getEmployees(String[] input){
+    public List<Employees> mapInputArrayToListOfEmployee(String[] input){
         List<Employees> employees = new ArrayList<>();
         for (String line: input) {
 

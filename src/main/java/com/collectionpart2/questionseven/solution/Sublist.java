@@ -1,10 +1,10 @@
 package com.collectionpart2.questionseven.solution;
 
-import com.collectionpart2.questionseven.app.Sublist;
+import com.collectionpart2.questionseven.app.CheckSublist;
 
-public class SublistOrNot {
+public class Sublist {
     public static void main(String[] args) {
-        Sublist sublist = new Sublist();
+        CheckSublist sublist = new CheckSublist();
         sublist.userInput();
     }
 }

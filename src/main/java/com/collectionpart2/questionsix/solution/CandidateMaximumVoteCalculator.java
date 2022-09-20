@@ -7,9 +7,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class CandidateWithMaxVotes {
+public class CandidateMaximumVoteCalculator {
 
-    public Map<String, Candidates> processData(List<Candidates> candidatesList){
+    public Map<String, Candidates> mapCandidateByConstituency(List<Candidates> candidatesList){
         Map<String, Candidates> result = new HashMap<>();
 
         for (Candidates candidate : candidatesList) {
@@ -22,18 +22,18 @@ public class CandidateWithMaxVotes {
         return result;
     }
 
-    public Map<String, Integer> finalResult(Map<String, Candidates> resultMap){
-        Map<String, Integer> finalResult = new HashMap<>();
+    public Map<String, Integer> getCandidateWithMaximumVote(Map<String, Candidates> resultMap){
+        Map<String, Integer> candidateMap = new HashMap<>();
 
         for (String constituency : resultMap.keySet()) {
             Candidates candidates = resultMap.get(constituency);
             Integer candidateId = candidates.getCandidateId();
-            finalResult.put(constituency,candidateId);
+            candidateMap.put(constituency,candidateId);
         }
 
-        return finalResult;
+        return candidateMap;
     }
-    public List<Candidates> getEmployees(String[] input){
+    public List<Candidates> mapArrayToListOfCandidates(String[] input){
         List<Candidates> employees = new ArrayList<>();
         for (String line: input) {
 

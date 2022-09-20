@@ -1,6 +1,6 @@
 package com.collectionpart2.questionfive.app;
 
-import com.collectionpart2.questionfive.solution.HighestSalary;
+import com.collectionpart2.questionfive.solution.HighestSalaryCalculator;
 import com.collectionpart2.questionfive.model.Employees;
 
 import java.util.List;
@@ -15,12 +15,12 @@ public class EmployeeHighestSalary {
             "34,Swaraj Birla,Testing,350000"};
 
     public static void main(String[] args) {
-        HighestSalary highestSalary = new HighestSalary();
-        List<Employees> employee = highestSalary.getEmployees(input);
+        HighestSalaryCalculator highestSalary = new HighestSalaryCalculator();
+        List<Employees> employee = highestSalary.mapInputArrayToListOfEmployee(input);
 
-        Map<String, Employees> resultMap = highestSalary.processData(employee);
+        Map<String, Employees> resultMap = highestSalary.mapDepartmentwiseEmployee(employee);
 
-        Map<String, Integer> finalResult = highestSalary.finalResult(resultMap);
+        Map<String, Integer> finalResult = highestSalary.getEmployeeHighestSalary(resultMap);
         System.out.println("Employee IDs of the highest paid employee in each department are : "+ finalResult);
     }
 }
