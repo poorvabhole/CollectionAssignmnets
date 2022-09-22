@@ -1,0 +1,31 @@
+package com.collectionpart2.questionfour.app;
+
+import com.collectionpart2.questionfour.model.Student;
+import com.collectionpart2.questionfour.parser.StudentInputParser;
+import com.collectionpart2.questionfour.solution.AverageMarksCalculator;
+
+import java.io.File;
+import java.util.List;
+
+public class Main {
+
+    public static void main(String[] args) throws Exception{
+        String[] inputData = { "22, Data Structures,45", "23, English,52", "22, English,51",
+                "26, Data Structures,72", "23, Data Structures,61", "24, English,81", };
+
+        StudentInputParser inputParser = new StudentInputParser();
+//        List<Student> studentList = inputParser.parseArray(inputData);
+        String filePath = "/home/priyab/CollectionAssignmnets/src/main/java/com/collectionpart2/questionfour/inputCSVFile.csv";
+        List<Student> studentList = inputParser.parseCSVFile(filePath);
+
+        AverageMarksCalculator averageMarks = new AverageMarksCalculator(studentList);
+
+        // get lowest id from the list of students
+        Integer lowestId = averageMarks.getLowestIdFromTheListOfStudents();
+
+        // get average marks for the student having lowest id
+        Double average = averageMarks.getAverageMarksForStudent(lowestId);
+
+        System.out.println(String.format("Average marks scored across all subjects by the student with the lowest ID  ( %d ) is %.2f", lowestId, average));
+    }
+}

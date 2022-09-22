@@ -33,20 +33,13 @@ public class CandidateMaximumVoteCalculator {
 
         return candidateMap;
     }
-    public List<Candidates> mapArrayToListOfCandidates(String[] input){
-        List<Candidates> employees = new ArrayList<>();
-        for (String line: input) {
-
-            String[] values = line.split(",");
-            int candidateId = Integer.parseInt(values[0]);
-            String name = values[1];
-            String Constituency = values[2];
-            int votes = Integer.parseInt(values[3]);
-
-            Candidates candidates = new Candidates(candidateId,name,Constituency,votes);
-            employees.add(candidates);
-        }
-        return employees;
-    }
+//    public List<Candidates> mapArrayToListOfCandidates(String[] input){
+//        List<Candidates> employees = new ArrayList<>();
+//        for (String line: input) {
+//
+//            employees.add(candidates);
+//        }
+//        return employees;
+//    }
 
 }

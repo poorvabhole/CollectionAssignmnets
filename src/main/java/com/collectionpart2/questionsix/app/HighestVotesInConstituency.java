@@ -1,6 +1,7 @@
 package com.collectionpart2.questionsix.app;
 
 import com.collectionpart2.questionsix.model.Candidates;
+import com.collectionpart2.questionsix.parser.CandidateInputParser;
 import com.collectionpart2.questionsix.solution.CandidateMaximumVoteCalculator;
 
 import java.util.List;
@@ -16,8 +17,10 @@ public class HighestVotesInConstituency {
         "34, Swaran Bijur, Baner,352"};
 
     public static void main(String[] args) {
+        CandidateInputParser inputParser = new CandidateInputParser();
+        List<Candidates> candidatesList = inputParser.parseArray(input);
         CandidateMaximumVoteCalculator candidateWithMaxVotes = new CandidateMaximumVoteCalculator();
-        List<Candidates> candidatesList = candidateWithMaxVotes.mapArrayToListOfCandidates(input);
+//        List<Candidates> candidatesList = candidateWithMaxVotes.mapArrayToListOfCandidates(input);
 
         Map<String, Candidates> candidateMap = candidateWithMaxVotes.mapCandidateByConstituency(candidatesList);
 

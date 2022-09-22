@@ -17,7 +17,8 @@ public class OutdatedLibrary {
 
             String productName = values[0];
             String libraryName = values[1];
-            Integer version = Integer.parseInt(values[2].replaceAll("[^0-9]", ""));
+            String version = values[2];
+//            Integer version = Integer.parseInt(values[2].replaceAll("[^0-9]", ""));
 
             ProductDetails productDetails = new ProductDetails(productName, libraryName, version);
             productDetailsList.add(productDetails);
@@ -25,29 +26,37 @@ public class OutdatedLibrary {
         return productDetailsList;
     }
 
-    public Map<String, ProductDetails> processData(List<ProductDetails> inputList) {
-        Map<String, ProductDetails> productDetailsMap = new HashMap<>();
-
-        for (ProductDetails productDetail : inputList) {
-            ProductDetails currentProduct = productDetailsMap.get(productDetail.getLibraryName());
-
-            if (currentProduct == null || currentProduct.getVersion() > productDetail.getVersion()) {
-                productDetailsMap.put(productDetail.getLibraryName(), productDetail);
+    public Map<String, String> getProductWithOutdatedLibrary(List<ProductDetails> productDetailsList, Map<String, String> productMap) {
+        Map<String, String> productList = new HashMap<>();
+        for (ProductDetails product : productDetailsList) {
+            String libraryName = product.getLibraryName();
+            String currentVersion = product.getVersion();
+            String latestVersion = productMap.get(libraryName);
+            if (currentVersion.compareTo(latestVersion) < 0) {
+                productList.put(product.getProductName(), product.getLibraryName());
             }
         }
-        return productDetailsMap;
+        return productList;
     }
-
-    public Map<String, String> getProductWithOutdatedLibrary(Map<String, ProductDetails> productDetailsMap) {
-//        List<String> productList = new ArrayList<>();
+    //        find out latest version of library
+    public Map<String, String> getLatestVersion(List<ProductDetails> inputList) {
         Map<String, String> productMap = new HashMap<>();
-        for (String library : productDetailsMap.keySet()) {
-            ProductDetails productDetails = productDetailsMap.get(library);
-            String productName = productDetails.getProductName();
-//            productList.add(productName);
-            productMap.put(library, productName);
+        for (ProductDetails productDetails : inputList) {
+            String currentLibrary = productDetails.getLibraryName();
+            String currentVersion = productDetails.getVersion();
+//            System.out.println("currentLibrary = "+currentLibrary);
+//            System.out.println("currentVersion before if = "+currentVersion);
+            if (productMap.containsKey(currentLibrary)) {
+                String latestVersion = productMap.get(currentLibrary);
+//                System.out.println("currentLibrary = "+currentLibrary);
+//                System.out.println("latestVersion = "+latestVersion);
+                if (latestVersion.compareTo(currentVersion) > 0) {
+                    currentVersion = latestVersion;
+                }
+//                System.out.println("currentVersion after if = "+currentVersion);
+            }
+            productMap.put(currentLibrary, currentVersion);
         }
-//        return productList;
         return productMap;
     }
 }

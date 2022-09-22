@@ -19,18 +19,14 @@ public class ProductWithOutdatedVersion {
                 "Video Call Server, Data Storage Library, v10",
                 "Video Call Server, Video Compression Library, v3"
         };
-//        input list of product name, library name, version name
-//        then, find product name which is using lowest (out-dated) version
 
         OutdatedLibrary outdatedLibrary = new OutdatedLibrary();
         List<ProductDetails> productDetailsList = outdatedLibrary.getProductDetails(input);
-//        System.out.println(productDetailsList);
 
-        Map<String, ProductDetails> productDetailsMap = outdatedLibrary.processData(productDetailsList);
-//        System.out.println(productDetailsMap);
-//        List<String> productList = outdatedLibrary.getProductWithOutdatedLibrary(productDetailsMap);
-//        System.out.println(productList);
-        Map<String,String> productMap = outdatedLibrary.getProductWithOutdatedLibrary(productDetailsMap);
-        System.out.println(productMap);
+        Map<String, String> latestVersionMap = outdatedLibrary.getLatestVersion(productDetailsList);
+        Map<String,String> productList = outdatedLibrary.getProductWithOutdatedLibrary(productDetailsList,latestVersionMap);
+
+        System.out.println(productList.keySet());
+
     }
 }

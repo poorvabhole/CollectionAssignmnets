@@ -3,9 +3,9 @@ package com.collectionpart2.questionthree.model;
 public class ProductDetails {
     private String productName;
     private String libraryName;
-    private Integer version;
+    private String version;
 
-    public ProductDetails(String productName, String libraryName, Integer version) {
+    public ProductDetails(String productName, String libraryName, String version) {
         this.productName = productName;
         this.libraryName = libraryName;
         this.version = version;
@@ -19,7 +19,7 @@ public class ProductDetails {
         return libraryName;
     }
 
-    public Integer getVersion() {
+    public String getVersion() {
         return version;
     }
 

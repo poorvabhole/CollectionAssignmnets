@@ -1,14 +1,13 @@
 package com.collectionpart2.questiontwo.app;
 
 import com.collectionpart2.questiontwo.model.CustomerDetails;
-import com.collectionpart2.questiontwo.solution.DiscountedProduct;
+import com.collectionpart2.questiontwo.parser.CustomerInputParser;
+import com.collectionpart2.questiontwo.solution.MostDiscountedProduct;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Customers {
+public class CustomersMain {
     public static void main(String[] args) {
 
         String input[] = {
@@ -23,17 +22,21 @@ public class Customers {
                 "Meena Kothari, Baner,23, USB Cable,100, Cash",
                 "Nina Kothari, Baner,24, USB Cable,200, UP"
         };
-        DiscountedProduct discountedProduct = new DiscountedProduct();
 
-        List<CustomerDetails> customerDetailsList = discountedProduct.getCustomers(input);
+        List<CustomerDetails> customerDetailsList = CustomerInputParser.parseArray(input);
+        MostDiscountedProduct discountedProduct = new MostDiscountedProduct(customerDetailsList);
+//        System.out.println(customerDetailsList);
 
-
-
-        Map<String, CustomerDetails> result = new HashMap<String, CustomerDetails>();
-        for(CustomerDetails customerDetails : customerDetailsList) {
-            result.put(customerDetails.getProductName(), customerDetails);
-        }
-        System.out.println(result);
+        Map<String, Integer> priceMap = discountedProduct.getMostDiscountedPrice();
+        List<String> customerNameList = discountedProduct.getDiscountProductCustomerName(priceMap);
+        System.out.println(priceMap);
+        System.out.println(customerNameList);
+//        Map<String, CustomerDetails> result = new HashMap<String, CustomerDetails>();
+//        for (CustomerDetails customerDetails : customerDetailsList) {
+//
+//            result.put(customerDetails.getProductName(), customerDetails);
+//        }
+//        System.out.println(result.values());
 //		for(CustomerDetails details : customerDetailsList) {
 //			System.out.println(details.getCustomerName());
 //		}
