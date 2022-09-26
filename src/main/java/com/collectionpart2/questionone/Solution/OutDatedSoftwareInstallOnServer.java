@@ -2,9 +2,7 @@ package com.collectionpart2.questionone.Solution;
 
 import com.collectionpart2.questionone.model.Software;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class OutDatedSoftwareInstallOnServer {
     List<Software> softwareList;
@@ -13,27 +11,44 @@ public class OutDatedSoftwareInstallOnServer {
         this.softwareList = softwareList;
     }
 
-    public Map<String,String> getOutDatedVersionMap(){
-        Map<String,String> outDatedVersionMap = new HashMap<>();
+    public Map<String, String> getOutDatedVersionMap() {
+        Map<String, String> outDatedVersionMap = new HashMap<>();
         try {
-            for (Software software : softwareList){
+            for (Software software : softwareList) {
                 String currentpackageName = software.getSoftwarePackageName();
                 String version = software.getVersion();
-                if (outDatedVersionMap.containsKey(currentpackageName)){
+                if (outDatedVersionMap.containsKey(currentpackageName)) {
                     String latestVersion = outDatedVersionMap.get(currentpackageName);
-                    if (latestVersion.compareTo(version) < 0){
+                    if (latestVersion.compareTo(version) < 0) {
                         version = latestVersion;
                     }
                 }
-                outDatedVersionMap.put(currentpackageName,version);
+                outDatedVersionMap.put(currentpackageName, version);
             }
-        }catch (NullPointerException ex){
+        } catch (NullPointerException ex) {
             throw new RuntimeException(ex);
         }
         return outDatedVersionMap;
     }
 
-    public void getOutOfDateSoftware(Map<String, String> versionMap){
-
+    public Set<String> getOutDatedSoftwarePackageName(Map<String, String> versionMap) {
+        List<String> packageNameList = new ArrayList<>();
+        Set<String> outdatedPackageNameSet = new HashSet<>();
+        Set<String> packageNameSet = new HashSet<>();
+        try {
+            for (Software software : softwareList) {
+                if (versionMap.containsKey(software.getSoftwarePackageName()) && versionMap.containsValue(software.getVersion())) {
+                    packageNameList.add(software.getSoftwarePackageName());
+                }
+            }
+            for (String packageName : packageNameList) {
+                if (!packageNameSet.add(packageName)) {
+                    outdatedPackageNameSet.add(packageName);
+                }
+            }
+        } catch (NullPointerException ex) {
+            throw new RuntimeException(ex);
+        }
+        return outdatedPackageNameSet;
     }
 }
