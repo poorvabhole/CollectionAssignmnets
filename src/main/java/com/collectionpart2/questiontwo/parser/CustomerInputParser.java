@@ -11,19 +11,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CustomerInputParser {
-    public List<CustomerDetails> parseCSVFile(String inputfile){
+    public List<CustomerDetails> parseCSVFile(String inputfile) {
         List<CustomerDetails> customerDetailsList = new ArrayList<CustomerDetails>();
         BufferedReader bufferedReader = null;
         try {
             bufferedReader = new BufferedReader(new FileReader(inputfile));
             String inputline;
-            while ((inputline = bufferedReader.readLine()) != null){
+            while ((inputline = bufferedReader.readLine()) != null) {
                 CustomerDetails customerDetails = CustomerInputMapper.map(inputline);
                 customerDetailsList.add(customerDetails);
             }
-        }catch (FileNotFoundException ex){
+        } catch (FileNotFoundException ex) {
             throw new RuntimeException(ex);
-        }catch (IOException e){
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
         return customerDetailsList;

@@ -19,6 +19,8 @@ public class CustomerInputMapper {
 
         }catch (NumberFormatException exception){
             throw new RuntimeException(exception);
+        }catch (ArrayIndexOutOfBoundsException e){
+            throw new RuntimeException(e);
         }
         return customerDetails;
     }
