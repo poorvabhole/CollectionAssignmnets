@@ -1,62 +1,55 @@
 package com.collectionpart2.questionthree.solution;
 
-import com.collectionpart2.questionthree.model.ProductDetails;
+import com.collectionpart2.questionthree.model.Product;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class OutdatedLibrary {
-    //        convert input string to ProductDetails object
-    public List<ProductDetails> getProductDetails(String[] input) {
-        List<ProductDetails> productDetailsList = new ArrayList<>();
+    List<Product> productList;
 
-        for (String line : input) {
-            String[] values = line.split(",");
-
-            String productName = values[0];
-            String libraryName = values[1];
-            String version = values[2];
-//            Integer version = Integer.parseInt(values[2].replaceAll("[^0-9]", ""));
-
-            ProductDetails productDetails = new ProductDetails(productName, libraryName, version);
-            productDetailsList.add(productDetails);
-        }
-        return productDetailsList;
+    public OutdatedLibrary(List<Product> productList) {
+        this.productList = productList;
     }
 
-    public Map<String, String> getProductWithOutdatedLibrary(List<ProductDetails> productDetailsList, Map<String, String> productMap) {
-        Map<String, String> productList = new HashMap<>();
-        for (ProductDetails product : productDetailsList) {
-            String libraryName = product.getLibraryName();
-            String currentVersion = product.getVersion();
-            String latestVersion = productMap.get(libraryName);
-            if (currentVersion.compareTo(latestVersion) < 0) {
-                productList.put(product.getProductName(), product.getLibraryName());
+    public Map<String, String> getProductWithOutdatedLibrary(Map<String, String> versionMap) {
+        Map<String, String> productMap = new HashMap<>();
+        try {
+            for (Product product : productList) {
+                String libraryName = product.getLibraryName();
+                String currentVersion = product.getVersion();
+                String latestVersion = versionMap.get(libraryName);
+                if (currentVersion.compareTo(latestVersion) < 0) {
+                    productMap.put(product.getProductName(), product.getLibraryName());
+                }
             }
+        }catch (NullPointerException ex){
+            throw new RuntimeException(ex);
         }
-        return productList;
+
+        return productMap;
     }
     //        find out latest version of library
-    public Map<String, String> getLatestVersion(List<ProductDetails> inputList) {
+    public Map<String, String> getLatestVersion() {
         Map<String, String> productMap = new HashMap<>();
-        for (ProductDetails productDetails : inputList) {
-            String currentLibrary = productDetails.getLibraryName();
-            String currentVersion = productDetails.getVersion();
-//            System.out.println("currentLibrary = "+currentLibrary);
-//            System.out.println("currentVersion before if = "+currentVersion);
-            if (productMap.containsKey(currentLibrary)) {
-                String latestVersion = productMap.get(currentLibrary);
-//                System.out.println("currentLibrary = "+currentLibrary);
-//                System.out.println("latestVersion = "+latestVersion);
-                if (latestVersion.compareTo(currentVersion) > 0) {
-                    currentVersion = latestVersion;
+        try {
+            for (Product productDetails : productList) {
+                String currentLibrary = productDetails.getLibraryName();
+                String currentVersion = productDetails.getVersion();
+
+                if (productMap.containsKey(currentLibrary)) {
+                    String latestVersion = productMap.get(currentLibrary);
+                    if (latestVersion.compareTo(currentVersion) > 0) {
+                        currentVersion = latestVersion;
+                    }
                 }
-//                System.out.println("currentVersion after if = "+currentVersion);
+                productMap.put(currentLibrary, currentVersion);
             }
-            productMap.put(currentLibrary, currentVersion);
+        }catch (NullPointerException ex){
+            throw new RuntimeException(ex);
         }
+
         return productMap;
     }
 }

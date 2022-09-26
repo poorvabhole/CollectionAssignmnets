@@ -8,24 +8,21 @@ import java.util.List;
 import java.util.Map;
 
 public class HighestVotesInConstituency {
-    static String[] input = {
-        "22, Ravi Pawar, Aundh,1603",
-        "23, Suvarna Kale, Baner,803",
-        "27, Vinod Chavan, Aundh,809",
-        "29, Vasant Mahajan, Aundh,617",
-        "32, Aarti Patil, Baner,351",
-        "34, Swaran Bijur, Baner,352"};
-
     public static void main(String[] args) {
-        CandidateInputParser inputParser = new CandidateInputParser();
-        List<Candidates> candidatesList = inputParser.parseArray(input);
-        CandidateMaximumVoteCalculator candidateWithMaxVotes = new CandidateMaximumVoteCalculator();
-//        List<Candidates> candidatesList = candidateWithMaxVotes.mapArrayToListOfCandidates(input);
+        try {
+            CandidateInputParser inputParser = new CandidateInputParser();
+            String filepath = "/home/priyab/CollectionAssignmnets/src/main/java/com/collectionpart2/questionsix/CandidateInputfile.csv";
+            List<Candidates> candidatesList = inputParser.parseArray(filepath);
+            CandidateMaximumVoteCalculator candidateWithMaxVotes = new CandidateMaximumVoteCalculator();
+            final Map<String, Candidates> candidateMap = candidateWithMaxVotes.mapCandidateByConstituency(candidatesList);
 
-        Map<String, Candidates> candidateMap = candidateWithMaxVotes.mapCandidateByConstituency(candidatesList);
+            final Map<String, Integer> candidateResultMap = candidateWithMaxVotes.getCandidateWithMaximumVote(candidateMap);
+            System.out.println("Constituency with highest votes " + candidateResultMap);
+        } catch (Exception exception) {
+            System.out.println(exception.getMessage());
+            exception.printStackTrace();
+        }
 
-        Map<String, Integer> candidateResultMap = candidateWithMaxVotes.getCandidateWithMaximumVote(candidateMap);
-        System.out.println("Constituency with highest votes "+candidateResultMap);
     }
 }
 

@@ -9,40 +9,45 @@ import java.util.Map;
 
 public class MostDiscountedProduct {
    private List<CustomerDetails> customerDetailsList;
-
     public MostDiscountedProduct(List<CustomerDetails> customerDetailsList) {
         this.customerDetailsList = customerDetailsList;
     }
-
     public Map<String, Integer> getMostDiscountedPrice(){
         Map<String, Integer> discountedPriceMap = new HashMap<>();
+        try {
+            for (CustomerDetails customerDetails : customerDetailsList){
+                String currentProductName = customerDetails.getProductName();
+                Integer currentPrice = customerDetails.getPrice();
+                Integer count = 0;
 
-        for (CustomerDetails customerDetails : customerDetailsList){
-            String currentProductName = customerDetails.getProductName();
-            Integer currentPrice = customerDetails.getPrice();
-
-            if (discountedPriceMap.containsKey(currentProductName)){
-                Integer discountedPrice = discountedPriceMap.get(currentProductName);
-                if (discountedPrice < currentPrice){
-                    currentPrice = discountedPrice;
+                if (discountedPriceMap.containsKey(currentProductName)){
+                    Integer discountedPrice = discountedPriceMap.get(currentProductName);
+                    if (discountedPrice < currentPrice){
+                        currentPrice = discountedPrice;
+                        count++;
+                    }
                 }
+                discountedPriceMap.put(currentProductName,currentPrice);
             }
-            discountedPriceMap.put(currentProductName,currentPrice);
-//            System.out.println(discountedPriceMap);
+        }catch (NullPointerException e){
+            throw new RuntimeException(e);
         }
         return discountedPriceMap;
     }
 
     public List<String> getDiscountProductCustomerName(Map<String, Integer> priceMap){
         List<String> customerNameList = new ArrayList<>();
-        for (CustomerDetails customerDetails : customerDetailsList ) {
-            String productName = customerDetails.getProductName();
-            Integer currentPrice = customerDetails.getPrice();
-            Integer discountedPrice = priceMap.get(productName);
-//            System.out.println(discountedPrice);
-            if (currentPrice == discountedPrice){
-                customerNameList.add(customerDetails.getCustomerName());
+        try {
+            for (CustomerDetails customerDetails : customerDetailsList ) {
+                String productName = customerDetails.getProductName();
+                Integer currentPrice = customerDetails.getPrice();
+                Integer discountedPrice = priceMap.get(productName);
+                if (currentPrice == discountedPrice){
+                    customerNameList.add(customerDetails.getCustomerName());
+                }
             }
+        }catch (NullPointerException ex){
+            throw new RuntimeException(ex);
         }
         return customerNameList;
     }

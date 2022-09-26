@@ -21,9 +21,6 @@ public class Student {
     }
     @Override
     public String toString() {
-//        return String.format("id: %d, subject: %s, marks: %d", Id, subject, marks);
-//        String placeHolder = "id: {0}, subject: {1}, marks: {2}";
-//        return java.text.MessageFormat.format(placeHolder, Id, subject, marks);
         return java.text.MessageFormat.format("id: {0}, subject: {1}, marks: {2}, {1} {1} {0} ", id, subject, marks);
 
     }

@@ -1,11 +1,11 @@
 package com.collectionpart2.questionthree.model;
 
-public class ProductDetails {
+public class Product {
     private String productName;
     private String libraryName;
     private String version;
 
-    public ProductDetails(String productName, String libraryName, String version) {
+    public Product(String productName, String libraryName, String version) {
         this.productName = productName;
         this.libraryName = libraryName;
         this.version = version;
