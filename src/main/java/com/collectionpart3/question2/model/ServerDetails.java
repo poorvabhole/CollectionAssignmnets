@@ -1,12 +1,12 @@
-package com.collectionpart2.questionone.model;
+package com.collectionpart3.question2.model;
 
-public class Software {
+public class Server {
     private String serverName;
     private String softwareType;
     private String softwarePackageName;
-    private String version;
+    private Double version;
 
-    public Software(String serverName, String softwareType, String softwareTypeName, String version) {
+    public Server(String serverName, String softwareType, String softwareTypeName, Double version) {
         this.serverName = serverName;
         this.softwareType = softwareType;
         this.softwarePackageName = softwareTypeName;
@@ -25,7 +25,7 @@ public class Software {
         return softwarePackageName;
     }
 
-    public String getVersion() {
+    public Double getVersion() {
         return version;
     }
 
