@@ -7,10 +7,10 @@ public class EmployeeInputMapper {
         Employees employees;
         try {
             String[] values = data.split(",");
-            int id = Integer.parseInt(values[0].trim());
+            Integer id = Integer.parseInt(values[0].trim());
             String name = values[1];
             String department = values[2];
-            int salary = Integer.parseInt(values[3].trim());
+            Integer salary = Integer.parseInt(values[3].trim());
             employees = new Employees(id,name,department,salary);
         }catch (NumberFormatException ex){
             throw new RuntimeException(ex);

@@ -1,4 +1,4 @@
-package com.collectionpart3.question1.app;
+package com.collectionpart3.question1.model;
 
 public class Student {
     private Integer id;

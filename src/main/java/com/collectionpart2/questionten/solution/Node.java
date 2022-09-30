@@ -8,4 +8,16 @@ public class Node {
     public Node(Integer data) {
         this.data = data;
     }
+
+    public Integer getData() {
+        return data;
+    }
+
+    public Node getPrevious() {
+        return previous;
+    }
+
+    public Node getNext() {
+        return next;
+    }
 }

@@ -1,20 +1,20 @@
 package com.collectionpart2.questionone.Solution;
 
-import com.collectionpart2.questionone.model.Software;
+import com.collectionpart2.questionone.model.Server;
 
 import java.util.*;
 
 public class OutDatedSoftwareInstallOnServer {
-    List<Software> softwareList;
+    List<Server> softwareList;
 
-    public OutDatedSoftwareInstallOnServer(List<Software> softwareList) {
+    public OutDatedSoftwareInstallOnServer(List<Server> softwareList) {
         this.softwareList = softwareList;
     }
 
     public Map<String, String> getOutDatedVersionMap() {
         Map<String, String> outDatedVersionMap = new HashMap<>();
         try {
-            for (Software software : softwareList) {
+            for (Server software : softwareList) {
                 String currentpackageName = software.getSoftwarePackageName();
                 String version = software.getVersion();
                 if (outDatedVersionMap.containsKey(currentpackageName)) {
@@ -36,7 +36,7 @@ public class OutDatedSoftwareInstallOnServer {
         Set<String> outdatedPackageNameSet = new HashSet<>();
         Set<String> packageNameSet = new HashSet<>();
         try {
-            for (Software software : softwareList) {
+            for (Server software : softwareList) {
                 if (versionMap.containsKey(software.getSoftwarePackageName()) && versionMap.containsValue(software.getVersion())) {
                     packageNameList.add(software.getSoftwarePackageName());
                 }
