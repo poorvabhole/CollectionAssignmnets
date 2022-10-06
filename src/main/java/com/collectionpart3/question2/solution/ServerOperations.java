@@ -1,10 +1,7 @@
 package com.collectionpart3.question2.solution;
 
-
 import com.collectionpart3.question2.model.ServerDetails;
-import com.collectionpart3.question2.model.SoftwarVersionComparator;
-
-import java.lang.module.ModuleDescriptor;
+import com.collectionpart3.question2.model.SoftwareVersionComparator;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -58,76 +55,28 @@ public class ServerOperations {
         return filteredRecordList;
     }
 
-    public List<ModuleDescriptor.Version> getSortedVersionList() {
-//        List<String> sortedList = new ArrayList<>();
-//        String[] array = {};
-//        for (List<String> versions : versionMap.values()) {
-//            array = new String[versions.size()];
-//            for (int i =0; i<array.length; i++) {
-//                array[i] = versions.get(i);
-//            }
-//        }
-////        System.out.println("Array");
-////        Arrays.stream(array).forEach(e -> System.out.println(e+" "));
-//        for (int j = 0; j < array.length; j++){
-//            String[] array1 = array[j].split(".");
-//            for (int k = 1; k < array.length; k++){
-//                String[] array2 = array[k].split(".");
-//            }
-//        }
-        List<ModuleDescriptor.Version> versionsSetOfSoftware = null;
-        Set<String> packageNameSet = new HashSet<>();
-        for (ServerDetails details : serverList) {
-            packageNameSet.add(details.getSoftwarePackageName());
-        }
-        for (String name : packageNameSet){
-             versionsSetOfSoftware=serverList.stream()
-                    .filter(server -> server.getSoftwarePackageName().equals(name))
-                    .map(server-> server.getVersion())
-                    .map(ModuleDescriptor.Version::parse)
-                    .distinct()
-                    .sorted()
-                    .collect(Collectors.toList());
-//            versionsSetOfSoftware.forEach(System.out::println);
-        }
-        return versionsSetOfSoftware;
-    }
+    public Map<String, SortedSet<String>> getSortedMap() {
 
+//        Map<String, SortedSet<String>> newMap = new HashMap<>();
+//        SortedSet<String> sortedVersions = new TreeSet<>(new SoftwarVersionComparator());
+//        Map<String, String> map = serverList.stream().collect(Collectors.toMap(ServerDetails::getSoftwarePackageName, ServerDetails::getVersion, (s, a) -> s + ", " + a));
+//        System.out.println(map.values());
+//        SoftwarVersionComparator versionComparator = new SoftwarVersionComparator();
+//        map.forEach((key, value) -> System.out.println(key + " " + value));
 
-    public void getMap() {
-        Map<String, List<String>> finalMap = new HashMap<>();
-        Set<String> packageNameSet = new HashSet<>();
-        List<String> list = null;
-        List<String> list1 = null;
-
-
-        for (ServerDetails details : serverList) {
-            packageNameSet.add(details.getSoftwarePackageName());
-//            SoftwarVersionComparator versionComparator = new SoftwarVersionComparator();
-
-        }
-        for (String name : packageNameSet) {
-            list = new ArrayList<>();
-            for (ServerDetails details : serverList) {
-                if (name.equals(details.getSoftwarePackageName())) {
-                    list.add(details.getVersion());
-
-                    finalMap.put(name,list);
-                }
-            }
-//            getSortedVersionList(finalMap);
-
-        }
-
-        Map<String, List<String>> map = serverList.stream().collect(Collectors.toMap(key -> key.getSoftwarePackageName(), value-> value.getVersion(),(a, b) -> a + ", " + b));
-        map.forEach((k, v) -> System.out.println(k + " -> " + v));
-        System.out.println(map.values());
-        for (Map.Entry<String>:
-             ) {
-
-        }
-        SoftwarVersionComparator versionComparator = new SoftwarVersionComparator();
-//        map.forEach((key, value) -> versionComparator.compare(value, ));
-
+        Map<String, SortedSet<String>> versionMap = serverList.stream()
+                .collect(Collectors.toMap(
+                        ServerDetails::getSoftwarePackageName,
+                        server -> {
+                            SortedSet<String> versions = new TreeSet<>(new SoftwareVersionComparator());
+                            versions.add(server.getVersion());
+                            return versions;
+                        },
+                        (prev, current) -> {
+                            prev.addAll(current);
+                            return prev;
+                        }
+                ));
+        return versionMap;
     }
 }

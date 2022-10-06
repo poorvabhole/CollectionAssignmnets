@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.stream.Collectors;
 
-public class SoftwarVersionComparator implements Comparator<String> {
+public class SoftwareVersionComparator implements Comparator<String> {
 
     @Override
     public int compare(String version, String otherVersion) {

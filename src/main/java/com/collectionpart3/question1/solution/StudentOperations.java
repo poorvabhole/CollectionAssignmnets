@@ -1,11 +1,8 @@
 package com.collectionpart3.question1.solution;
-
 import com.collectionpart3.question1.model.Student;
-
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class StudentOperations {

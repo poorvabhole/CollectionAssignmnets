@@ -5,6 +5,9 @@ import com.collectionpart3.question2.parser.ServerInputParser;
 import com.collectionpart3.question2.solution.ServerOperations;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.SortedSet;
 
 public class Main {
     public static void main(String[] args) {
@@ -36,7 +39,7 @@ public class Main {
 //        filteredList.forEach(System.out::println);
 
 //        Question 6
-//        serverOperations.getMap();
-        serverOperations.getMap();
+        Map<String, SortedSet<String>> sortedMap = serverOperations.getSortedMap();
+        sortedMap.forEach((key,value)->System.out.println(key + "" + value));
     }
 }
